@@ -54,7 +54,7 @@ class TestStellarBurgers:
     # Нажимаем на кнопку "Начинки"
         driver.find_element(*Locators.FILLINGS_BUTTON).click()
 
-    # ждем появления на странице ингредиента "Мясо бессмертных моллюсков Protostomia"
+    # ждем появления на странице заголовка "Начинки" (не кнопки, именно заголовка в контейнере)
         WebDriverWait(driver, 2).until(
             EC.presence_of_element_located(
                 (Locators.HEADER_FILLINGS))
