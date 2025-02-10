@@ -1,35 +1,77 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from locators import Locators
-import time
+import data
+
 
 class TestStellarBurgers:
-    def test_constructor(self, driver):
+    def test_fillings(self, driver):
     # Открываем главную страницу
-        driver.get("https://stellarburgers.nomoreparties.site/")
+        driver.get(data.MAIN_PAGE)
+    # проверяем наличие на странице раздела конструктора
+        WebDriverWait(driver, 3).until(EC.presence_of_element_located(Locators.BURGER_INGREDIENTS_CONTAINER))
+    # Нажимаем на кнопку "Начинки"
+        driver.find_element(*Locators.FILLINGS_BUTTON).click()
+    # ждем появления на странице ингредиента "Мясо бессмертных моллюсков Protostomia"
+        WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located(
+                (Locators.MEAT_FILLING))
+        )
+        assert 'tab_tab_type_current' in driver.find_element(*Locators.FILLINGS_BUTTON).get_attribute('class')
+
+
+    def test_sauces(self, driver):
+    # Открываем главную страницу
+        driver.get(data.MAIN_PAGE)
     # проверяем наличие на странице раздела конструктора
         WebDriverWait(driver, 3).until(EC.presence_of_element_located(Locators.BURGER_INGREDIENTS_CONTAINER))
 
-    # Делаем скролл до раздела "Соусы"
-        driver.find_element(*Locators.SAUCES_BUTTON).click()
-        sauces_header = driver.find_element(*Locators.HEADER_SAUCES)
-        driver.execute_script("arguments[0].scrollIntoView();", sauces_header)
-        assert sauces_header.is_displayed()
-        time.sleep(2)# пауза для визуальной проверки отображения раздела
-
-    # Делаем скролл до раздела "Начинки"
+    # Нажимаем на кнопку "Начинки"
         driver.find_element(*Locators.FILLINGS_BUTTON).click()
-        fillings_header = driver.find_element(*Locators.HEADER_FILLINGS)
-        driver.execute_script("arguments[0].scrollIntoView();", fillings_header)
-        assert fillings_header.is_displayed()
-        time.sleep(2) # пауза для визуальной проверки отображения раздела
 
-    # Делаем скролл до раздела "Булки"
+    # ждем появления на странице ингредиента "Мясо бессмертных моллюсков Protostomia"
+        WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located(
+                (Locators.MEAT_FILLING))
+        )
+
+    # Нажимаем на кнопку "Соусы" (переходим к тестируемому разделу)
+        driver.find_element(*Locators.SAUCES_BUTTON).click()
+
+    # ждем появления на странице ингредиента "Соус Spicy-X"
+        WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located(
+                (Locators.SPICY_SAUCE))
+        )
+        assert 'tab_tab_type_current' in driver.find_element(*Locators.SAUCES_BUTTON).get_attribute('class')
+
+    def test_buns(self, driver):
+    # Открываем главную страницу
+        driver.get(data.MAIN_PAGE)
+    # проверяем наличие на странице раздела конструктора
+        WebDriverWait(driver, 3).until(EC.presence_of_element_located(Locators.BURGER_INGREDIENTS_CONTAINER))
+
+    # Нажимаем на кнопку "Начинки"
+        driver.find_element(*Locators.FILLINGS_BUTTON).click()
+
+    # ждем появления на странице ингредиента "Мясо бессмертных моллюсков Protostomia"
+        WebDriverWait(driver, 2).until(
+            EC.presence_of_element_located(
+                (Locators.HEADER_FILLINGS))
+        )
+
+    # Нажимаем на кнопку "Булки" (переходим к тестируемому разделу)
         driver.find_element(*Locators.BUNS_BUTTON).click()
-        buns_header = driver.find_element(*Locators.HEADER_BUNS)
-        driver.execute_script("arguments[0].scrollIntoView();", buns_header)
-        assert buns_header.is_displayed()
-        time.sleep(2) # пауза для визуальной проверки отображения раздела
+
+    # ждем появления на странице ингредиента "Флюоресцентная булка R2-D3"
+        WebDriverWait(driver, 3).until(
+            EC.presence_of_element_located(
+                (Locators.FLUOR_BUN))
+        )
+        assert 'tab_tab_type_current' in driver.find_element(*Locators.BUNS_BUTTON).get_attribute('class')
+
+
+
 
 
 

@@ -23,9 +23,11 @@ class Locators():
     LOGO_STELLAR_BURGERS = (By.XPATH, '//div/a[@href="/"]') #логотип STELLAR_BURGERS
     CONSTRUCTOR_BUTTON = (By.XPATH, '//li/a[@href="/"]') #кнопка "Конструктор"
     BURGER_INGREDIENTS_CONTAINER = (By.CSS_SELECTOR, "section.BurgerIngredients_ingredients__1N8v2") # Контейнер с ингредиентами
-    HEADER_SAUCES = (By.XPATH, "//h2[text()='Соусы']") # Заголовок раздела "Соусы"
     HEADER_FILLINGS = (By.XPATH, '//h2[text()="Начинки"]') # Заголовок раздела "Начинки"
-    HEADER_BUNS = (By.XPATH, '//h2[text()="Булки"]') # Заголовок раздела "Булки"
-    BUNS_BUTTON = (By.XPATH, '//span[text()="Булки"]')  # Кнопка "Булки"
-    SAUCES_BUTTON = (By.XPATH, '//span[text()="Соусы"]')  # Кнопка "Соусы"
-    FILLINGS_BUTTON = (By.XPATH, '//span[text()="Начинки"]')  # Кнопка "Начинки"
+    BUNS_BUTTON = (By.XPATH, '//span[text()="Булки"]/parent::div')  # Кнопка "Булки"
+    SAUCES_BUTTON = (By.XPATH, '//span[text()="Соусы"]/parent::div')  # Кнопка "Соусы"
+    FILLINGS_BUTTON = (By.XPATH, '//span[text()="Начинки"]/parent::div')  # Кнопка "Начинки"
+    MEAT_FILLING = (By.XPATH, '//p[text()="Мясо бессмертных моллюсков Protostomia"]')
+    SPICY_SAUCE = (By.XPATH, '//p[text()="Соус Spicy-X"]')
+    FLUOR_BUN = (By.XPATH, '//p[text()="Флюоресцентная булка R2-D3"]')
+

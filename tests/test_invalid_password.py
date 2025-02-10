@@ -1,20 +1,17 @@
 from locators import Locators
+import data
 
 class TestStellarBurgers:
     def test_error_invalid_password(self, driver):
     # Открываем главную страницу
-        driver.get("https://stellarburgers.nomoreparties.site/")
+        driver.get(data.MAIN_PAGE)
 
     # Нажимаем на кнопку "Войти в аккаунт" на главной странице
         driver.find_element(*Locators.LOGIN_BUTTON_MAIN_PAGE).click()
 
     # Заполняем поля формы на странице входа
-
-        valid_email = "anastasiyavolodina15000@mail.ru"  # корректный email
-        invalid_password = "12345"  # некорректный пароль
-
-        driver.find_element(*Locators.EMAIL_FIELD_LOGIN_PAGE).send_keys(valid_email)
-        driver.find_element(*Locators.PASSWORD_FIELD_LOGIN_PAGE).send_keys(invalid_password)
+        driver.find_element(*Locators.EMAIL_FIELD_LOGIN_PAGE).send_keys(data.EMAIL_FOR_LOGIN)
+        driver.find_element(*Locators.PASSWORD_FIELD_LOGIN_PAGE).send_keys(data.INVALID_PASSWORD)
 
     # Нажимаем на кнопку "Войти" на странице входа
         driver.find_element(*Locators.LOGIN_BUTTON).click()
