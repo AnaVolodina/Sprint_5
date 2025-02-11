@@ -2,16 +2,12 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from locators import Locators
 import data
-from faker import Faker
+import helper
 
 class TestStellarBurgers:
-    # Генерируем случайный логин(email)
-    fake = Faker()
-    def fake_email(self):
-        return self.fake.email()
 
     def test_successful_registration(self, driver):
-        email = self.fake.email()
+        email = helper.fake.email()
     # Открываем страницу регистрации
         driver.get(data.REGISTRATION_PAGE)
 
